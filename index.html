@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>Aetheria Launcher v1.0.0</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+<div id="particles-js"></div>
+<header class="top-bar">
+    <div class="logo-container">
+        <span class="logo">Aetheria</span>
+    </div>
+    <nav class="nav-links">
+        <a href="#" class="nav-link">Главная</a>
+        <a href="#" class="nav-link">Документы</a>
+    </nav>
+    <div class="auth-buttons" id="authButtons">
+        <button class="instruction-button"><i class="fa fa-question-circle"></i></button>
+        <button class="settings-button"><i class="fa fa-cog"></i></button>
+        <button class="login-button">Вход</button>
+    </div>
+    <div class="user-panel" id="userPanel" style="display: none;">
+        <button class="user-button">
+            <span id="userName">Username</span>
+        </button>
+        <div class="user-info" id="userInfo">
+            <span class="user-time">Время на сайте: <span id="userTime">0 минут</span></span>
+            <span class="user-subscription">Подписка: <span id="subscriptionStatus">Free</span></span>
+            <button class="profile-button" id="profileButton"><i class="fa fa-user"></i> Профиль</button>
+        </div>
+    </div>
+</header>
+<!-- Профиль пользователя -->
+<div class="profile-modal" id="profileModal">
+    <div class="profile-content">
+        <h2 class="profile-title">Личный кабинет</h2>
+        <div class="profile-section">
+            <h3>Информация</h3>
+            <div class="profile-item">
+                <label>Имя пользователя</label>
+                <span id="profileUsername">Username</span>
+            </div>
+            <div class="profile-item">
+                <label>Email</label>
+                <span id="profileEmail">user@email.com</span>
+            </div>
+            <div class="profile-item">
+                <label>Подписка</label>
+                <span id="profileSubscription">Free</span>
+            </div>
+        </div>
+        <div class="profile-section">
+            <h3>Изменить профиль</h3>
+            <div class="profile-item">
+                <label for="profile-name-input">Новое имя</label>
+                <input type="text" id="profile-name-input">
+            </div>
+            <div class="profile-item">
+                <label for="profile-email-input">Новый email</label>
+                <input type="email" id="profile-email-input">
+            </div>
+            <div class="profile-item">
+                <label for="profile-password-input">Новый пароль</label>
+                <input type="password" id="profile-password-input">
+            </div>
+            <button id="saveProfileButton">Сохранить</button>
+        </div>
+        <button type="button" class="profile-close" data-modal="profileModal">Закрыть</button>
+    </div>
+</div>
+
+
+<!-- Регистрация -->
+<div class="auth-modal" id="registerModal">
+    <div class="auth-content">
+        <h2 class="auth-title">Регистрация</h2>
+        <form id="registerForm">
+            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Пароль" required>
+            <input type="text" placeholder="Код подтверждения" id="verifyCode">
+            <button type="submit">Зарегистрироваться</button>
+            <button type="button" class="auth-close" data-modal="registerModal">Закрыть</button>
+        </form>
+    </div>
+</div>
+
+<!-- Вход -->
+<div class="auth-modal" id="loginModal">
+    <div class="auth-content">
+        <h2 class="auth-title">Вход</h2>
+        <form id="loginForm">
+            <input type="text" placeholder="Email или Username" required>
+            <input type="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+            <button type="button" class="auth-close" data-modal="loginModal">Закрыть</button>
+            <button type="button" class="register-button-modal" data-modal="registerModal">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+
+<div class="settings-modal" id="settingsModal">
+    <div class="settings-content">
+        <h2 class="settings-title">Настройки</h2>
+        <div class="setting-item">
+            <label for="optimize-checkbox">Оптимизировать сайт</label>
+            <input type="checkbox" id="optimize-checkbox">
+        </div>
+        <div class="setting-item">
+            <label for="snow-checkbox">Снег</label>
+            <input type="checkbox" id="snow-checkbox">
+        </div>
+        <div class="setting-item">
+            <label for="theme-select">Цветовая тема</label>
+            <select id="theme-select">
+                <option value="red">Красный</option>
+                <option value="orange">Оранжевый</option>
+                <option value="blue">Синий</option>
+                <option value="green">Зелёный</option>
+                <option value="rainbow">Радуга</option>
+                <option value="snow">Снег</option>
+            </select>
+        </div>
+        <button id="close-settings">Закрыть</button>
+    </div>
+</div>
+<div class="instruction-panel" id="instructionPanel">
+    <div class="instruction-content">
+        <i class="fa fa-info-circle instruction-icon"></i>
+        <p class="instruction-text">
+            <span class="highlighted-step">1.</span> Выберите версию.<br>
+            <span class="highlighted-step">2.</span> Нажмите "Скачать".<br>
+            <span class="highlighted-step">3.</span> После установки, наслаждайтесь игрой! <br>
+            <small>Возможно, потребуется VPN!</small>
+        </p>
+    </div>
+</div>
+<div class="content-container">
+    <div class="launcher-window">
+        <h1>Выберите версию:</h1>
+        <div class="select-container">
+            <select id="version-select">
+                <option value="default" disabled selected>Выберите версию</option>
+                <option value="Nursultan1.16.5" data-link="http://recut.ru/1fNI" data-size="10MB" data-description="Модифицированная версия 1.16.5 с набором читов. Дата релиза: 08.23">Nursultan 1.16.5 (10MB)</option>
+                <option value="CelkaRecode" data-link="https://workupload.com/file/49vY6rVY6cE" data-size="20MB" data-description="Рекодированная версия Celka с улучшенными читами. Дата релиза: неизвестно">CelkaRecode (20MB)</option>
+                <option value="MoonHack" data-link="https://workupload.com/file/9U7un9MhL4K" data-size="15MB" data-description="MoonHack клиент с расширенным набором читов. Дата релиза: неизвестно">MoonHack (15MB)</option>
+                 <option value="FlugerClient" data-link="https://recut.ru/1fLs" data-size="12MB" data-description="Fluger клиент с набором читов. Дата релиза: 11.04.24">FlugerClient (12MB)</option>
+                <option value="soon" disabled class="soon-option">Soon...</option>
+            </select>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <button id="download-button" disabled>Скачать</button>
+         <div class="version-description"></div>
+          <div class="version-size"></div>
+    </div>
+    <div class="download-manager">
+        <h2>Менеджер загрузок</h2>
+        <ul id="download-list">
+            <!-- Тут будут элементы списка загрузок -->
+        </ul>
+    </div>
+    <div class="project-info">
+        <h2>О проекте</h2>
+        <p>Добро пожаловать на наш лаунчер! Мы предоставляем вам лучшие версии Minecraft, чтобы вы могли насладиться игрой без каких-либо проблем.</p>
+    </div>
+</div>
+<footer class="footer">
+    <a href="https://t.me/+TsBzJPZcuORhZDQy" target="_blank" class="telegram-link">
+        <i class="fab fa-telegram"></i> Telegram
+    </a>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
