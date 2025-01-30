@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const instructionPanel = document.getElementById('instructionPanel');
     const instructionButton = document.querySelector('.instruction-button');
     const particlesJSContainer = document.getElementById('particles-js');
+        const snowColorSelect = document.getElementById('snow-color-select');
     const body = document.body;
     const registerButton = document.querySelector('.register-button');
     const registerModalButton = document.querySelector('.register-button-modal');
@@ -46,28 +47,16 @@ document.addEventListener('DOMContentLoaded', function() {
         password: ''
     };
 
-     // Функция для применения темы из локального хранилища
-   function applyTheme(theme) {
+    // Функция для применения темы из локального хранилища
+    function applyTheme(theme) {
        currentTheme = theme;
        const elements = document.querySelectorAll('.auth-buttons button, .auth-content button, #close-settings, .profile-content button, #saveProfileButton');
        elements.forEach(function(el) {
-           el.classList.remove('red', 'orange', 'blue', 'green','rainbow','snow');
+           el.classList.remove('red', 'orange', 'blue', 'green','rainbow');
            el.classList.add(theme);
        });
        localStorage.setItem('theme', theme);
-         if(theme === 'snow') {
-            body.style.backgroundColor = '#fff';
-             body.style.color = '#1a1a1a';
-             body.style.backgroundImage = 'none';
-             body.style.backgroundSize = '100%';
-        } else{
-              body.style.backgroundColor = '#1a1a1a';
-            body.style.color = '#fff';
-            body.style.backgroundImage = "url('https://i.imgur.com/u9Q79vK.png')";
-             body.style.backgroundSize = '400%';
-        }
-   }
-
+    }
 
     // Функция для обновления данных профиля в личном кабинете
     function updateProfileDisplay() {
@@ -75,8 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
         profileEmailDisplay.textContent = userProfile.email;
         profileSubscriptionDisplay.textContent = userSubscription;
     }
-  // Функция для отображения менеджера загрузок
-     function addDownloadItem(link, name) {
+
+    // Функция для отображения менеджера загрузок
+    function addDownloadItem(link, name) {
         const listItem = document.createElement('li');
         const nameSpan = document.createElement('span');
         nameSpan.textContent = name;
@@ -91,7 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
          // Открываем ссылку в новой вкладке
          window.open(link, '_blank');
     }
-    // Получение темы из локального хранилища
+
+   // Получение темы из локального хранилища
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
         applyTheme(storedTheme);
@@ -103,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTheme(this.value);
     });
 
-    // Инициализация частиц снега
+       // Инициализация частиц снега
     particlesJS('particles-js', {
         "particles": {
             "number": {
@@ -191,6 +182,18 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         "retina_detect": true
     });
+        snowColorSelect.addEventListener('change', function() {
+        particlesJS.load('particles-js', 'particles.json', function() {
+            const config = particlesJS.configs['particles-js'];
+            if (config && config.particles && config.particles.color) {
+                config.particles.color.value = snowColorSelect.value;
+                particlesJS.configs['particles-js'] = config;
+                particlesJS.load('particles-js', config, function() {
+                       // console.log('Успешно перекрасил снег!');
+                     });
+            }
+        });
+     });
 
     // Функция для запуска таймера
     function startTimer() {
@@ -324,13 +327,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (link) {
             downloadButton.removeAttribute('disabled');
             downloadButton.addEventListener('click', function() {
-               addDownloadItem(link, selectedOption.textContent);
+                addDownloadItem(link, selectedOption.textContent);
             });
             const versionDescription = document.querySelector('.launcher-window .version-description');
             if (versionDescription) {
                 versionDescription.textContent = description || 'Описание недоступно';
             }
-             const versionSize = document.querySelector('.launcher-window .version-size');
+            const versionSize = document.querySelector('.launcher-window .version-size');
             if (versionSize) {
                 versionSize.textContent = `Размер: ${size}`;
             }
@@ -353,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(trail);
     }
 
-    document.addEventListener('mousemove', function(e) {
+   document.addEventListener('mousemove', function(e) {
         trailElements.forEach((trail, index) => {
             const delay = (index + 1) * 5;
             setTimeout(() => {
@@ -366,6 +369,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 trail.style.opacity = opacity;
             }, delay);
         });
-        body.style.backgroundPosition = `${50 + (e.clientX - window.innerWidth / 2) / 50}% ${50 + (e.clientY - window.innerHeight / 2) / 50}%`;
     });
 });
