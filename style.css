@@ -10,15 +10,17 @@ body {
     padding: 20px;
     box-sizing: border-box;
     overflow-x: hidden;
-    background-image: url('https://i.imgur.com/u9Q79vK.png');
-    background-size: 400%;
-    background-position: center;
-    background-attachment: fixed;
-    transition: background-position 0.3s ease;
     position: relative;
-    overflow: hidden;
 }
-
+#background-video {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   z-index: -2;
+}
 #particles-js {
     position: fixed;
     top: 0;
@@ -222,23 +224,6 @@ body {
      0%{background-position: 0% 50%;}
     50%{background-position: 100% 50%;}
     100%{background-position: 0% 50%;}
-}
-.auth-buttons button.snow,
-.auth-content button.snow,
-#close-settings.snow,
-.profile-content button.snow,
-#saveProfileButton.snow {
-    background-color: #fff;
-      color: #1a1a1a;
-}
-
-.auth-buttons button.snow:hover,
-.auth-content button.snow:hover,
-#close-settings.snow:hover,
-.profile-content button.snow:hover,
-#saveProfileButton.snow:hover {
-    background-color: #ddd;
-     color: #1a1a1a;
 }
 .auth-modal {
     display: none;
@@ -699,7 +684,10 @@ body {
     gap: 10px;
     transition: all 0.3s ease;
 }
-
+.copyright {
+  font-size: 0.8em;
+  margin-right: 10px;
+}
 .telegram-link {
     display: inline-flex;
     align-items: center;
@@ -825,17 +813,19 @@ body {
         align-items: center;
     }
 
-    body {
-        background-size: 800%;
-    }
-
+  .copyright {
+     font-size: 0.7em;
+     margin-bottom: 5px;
+ }
     .user-panel {
         margin-left: auto;
     }
 
     .footer {
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+         align-items: center;
+          gap: 5px;
     }
 
     .profile-item {
