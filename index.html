@@ -10,6 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
+    <video autoplay muted loop id="background-video">
+        <source src="background.mp4" type="video/mp4">
+        Ваш браузер не поддерживает HTML5 видео.
+    </video>
 <div id="particles-js"></div>
 <header class="top-bar">
     <div class="logo-container">
@@ -115,6 +119,16 @@
             <label for="snow-checkbox">Снег</label>
             <input type="checkbox" id="snow-checkbox">
         </div>
+         <div class="setting-item">
+                  <label for="snow-color-select">Цвет снежинок</label>
+                   <select id="snow-color-select">
+                         <option value="#ffffff">Белый</option>
+                         <option value="#ff0000">Красный</option>
+                         <option value="#00ff00">Зеленый</option>
+                        <option value="#0000ff">Синий</option>
+                         <option value="#ffff00">Желтый</option>
+                    </select>
+             </div>
         <div class="setting-item">
             <label for="theme-select">Цветовая тема</label>
             <select id="theme-select">
@@ -123,7 +137,6 @@
                 <option value="blue">Синий</option>
                 <option value="green">Зелёный</option>
                 <option value="rainbow">Радуга</option>
-                <option value="snow">Снег</option>
             </select>
         </div>
         <button id="close-settings">Закрыть</button>
@@ -146,10 +159,10 @@
         <div class="select-container">
             <select id="version-select">
                 <option value="default" disabled selected>Выберите версию</option>
-                <option value="Nursultan1.16.5" data-link="http://recut.ru/1fNI" data-size="10MB" data-description="Модифицированная версия 1.16.5 с набором читов. Дата релиза: 08.23">Nursultan 1.16.5 (10MB)</option>
-                <option value="CelkaRecode" data-link="https://workupload.com/file/49vY6rVY6cE" data-size="20MB" data-description="Рекодированная версия Celka с улучшенными читами. Дата релиза: неизвестно">CelkaRecode (20MB)</option>
-                <option value="MoonHack" data-link="https://workupload.com/file/9U7un9MhL4K" data-size="15MB" data-description="MoonHack клиент с расширенным набором читов. Дата релиза: неизвестно">MoonHack (15MB)</option>
-                 <option value="FlugerClient" data-link="https://recut.ru/1fLs" data-size="12MB" data-description="Fluger клиент с набором читов. Дата релиза: 11.04.24">FlugerClient (12MB)</option>
+                  <option value="Nursultan1.16.5" data-link="http://recut.ru/1fNI" data-size="10MB" data-description="Модифицированная версия 1.16.5 с набором читов. Дата релиза: 08.23">Nursultan 1.16.5 (10MB)</option>
+                  <option value="CelkaRecode" data-link="https://workupload.com/file/49vY6rVY6cE" data-size="20MB" data-description="Рекодированная версия Celka с улучшенными читами. Дата релиза: неизвестно">CelkaRecode (20MB)</option>
+                   <option value="MoonHack" data-link="https://workupload.com/file/9U7un9MhL4K" data-size="15MB" data-description="MoonHack клиент с расширенным набором читов. Дата релиза: неизвестно">MoonHack (15MB)</option>
+                  <option value="FlugerClient" data-link="https://recut.ru/1fLs" data-size="12MB" data-description="Fluger клиент с набором читов. Дата релиза: 11.04.24">FlugerClient (12MB)</option>
                 <option value="soon" disabled class="soon-option">Soon...</option>
             </select>
             <i class="fa fa-chevron-down"></i>
@@ -170,6 +183,7 @@
     </div>
 </div>
 <footer class="footer">
+   <span class="copyright">© Copyright Aetheria</span>
     <a href="https://t.me/+TsBzJPZcuORhZDQy" target="_blank" class="telegram-link">
         <i class="fab fa-telegram"></i> Telegram
     </a>
